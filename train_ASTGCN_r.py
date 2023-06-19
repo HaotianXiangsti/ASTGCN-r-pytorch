@@ -43,8 +43,8 @@ model_name = training_config['model_name']
 ctx = training_config['ctx']
 os.environ["CUDA_VISIBLE_DEVICES"] = ctx
 USE_CUDA = torch.cuda.is_available()
-DEVICE = torch.device('cuda:0')
-print("CUDA:", USE_CUDA, DEVICE)
+DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu') #torch.device('cuda:0')
+print("Device:" DEVICE)
 
 learning_rate = float(training_config['learning_rate'])
 epochs = int(training_config['epochs'])
@@ -74,6 +74,7 @@ train_loader, train_target_tensor, val_loader, val_target_tensor, test_loader, t
     num_of_days, num_of_weeks, DEVICE, batch_size)
 
 adj_mx, distance_mx = get_adjacency_matrix(adj_filename, num_of_vertices, id_filename)
+print(type(adj_mx))
 
 net = make_model(DEVICE, nb_block, in_channels, K, nb_chev_filter, nb_time_filter, time_strides, adj_mx,
                  num_for_predict, len_input, num_of_vertices)
