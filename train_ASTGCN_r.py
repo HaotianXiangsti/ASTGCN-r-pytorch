@@ -74,7 +74,7 @@ train_loader, train_target_tensor, val_loader, val_target_tensor, test_loader, t
     num_of_days, num_of_weeks, DEVICE, batch_size)
 
 adj_mx, distance_mx = get_adjacency_matrix(adj_filename, num_of_vertices, id_filename)
-print(type(adj_mx))
+np.save('/content/adj_mx.npy',adj_mx)
 
 net = make_model(DEVICE, nb_block, in_channels, K, nb_chev_filter, nb_time_filter, time_strides, adj_mx,
                  num_for_predict, len_input, num_of_vertices)
