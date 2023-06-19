@@ -44,7 +44,7 @@ ctx = training_config['ctx']
 os.environ["CUDA_VISIBLE_DEVICES"] = ctx
 USE_CUDA = torch.cuda.is_available()
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu') #torch.device('cuda:0')
-print("Device:" DEVICE)
+print("Device:", DEVICE)
 
 learning_rate = float(training_config['learning_rate'])
 epochs = int(training_config['epochs'])
